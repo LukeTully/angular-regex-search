@@ -7,7 +7,7 @@ if (!isset($_REQUEST['keyword'])) {
 
 } else {
 
-
+    // Cheese
     // Open up a database connection
     $conn = new mysqli('localhost', 'db_username', 'db_password', 'db_dbname', '3306');
 
