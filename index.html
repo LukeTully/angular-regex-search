@@ -12,9 +12,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js" type="text/javascript"></script>
+    <script src="scripts/angular.js" type="text/javascript"></script>
 </head>
-<body class="body" ng-cloak ng-class="globalClasses.searchStatus" ng-controller="regexListingController" ng-cloak>
+<body class="body" ng-controller="SearchController" ng-cloak ng-class="globalClasses.searchStatus">
 <div id="main-wrapper">
     <div id="main-form-container" class="main-form-container">
         <div class="inner-container-wrapper">
@@ -47,47 +47,16 @@
                 </div>
 
             </form>
+        </div>
+
+    </div>
+
+    <div id="results-container" class="results-container" ng-cloak>
+        <div class="inner-container-wrapper" ng-view>
 
         </div>
     </div>
-    <div id="results-container" class="results-container" ng-show="searchData.regexResults">
-        <div class="inner-container-wrapper">
-            <div class="regex-container"
-                 ng-repeat="regex in searchData.regexResults | filter: searchData.filterText | orderBy: 'Title'"
-                 ng-class="localClasses.expandfield" expandfield="expanded" ng-cloak>
-                <div class="regex-data" ng-class="regexState">
-                    <div class="regex-data-item-container">
-                        <p class="data-label" ng-cloak>Title</p>
 
-                        <p class="data-item" ng-cloak>{{ regex.Title }}</p>
-                    </div>
-                    <div class="regex-data-item-container last">
-                        <p class="data-label" ng-cloak>Pattern</p>
-
-                        <p class="data-item" ng-cloak>{{regex.Pattern }}</p>
-                    </div>
-                    <div class="regex-more-details-container">
-                        <div class="regex-data-item-container"><p class="data-label">Doesn't Match</p>
-
-                            <p class="data-item" ng-cloak>{{ regex.NegativeMatch }}</p>
-                        </div>
-                        <div class="regex-data-item-container"><p class="data-label">Matches</p>
-
-                            <p class="data-item"> ng-cloak{{ regex.PositiveMatch }}</p>
-                        </div>
-                        <div class="regex-data-item-container last">
-                            <p class="data-label" ng-cloak>Description</p>
-
-                            <p class="data-item" ng-cloak>{{regex.Description }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="regex-moreinfo-container">
-                    <a title="More info" class="more-info button" ng-click="expand()">view</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </div>
 </div>

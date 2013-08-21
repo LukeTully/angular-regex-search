@@ -3,15 +3,41 @@
  */
 var app = angular.module('RegexSearch', []);
 app.config(function ($routeProvider) {
+    $routeProvider.when("/", {
+        templateUrl: "regex.html",
+        controller: "ListingController"
+    }).when('/:id', {
 
-    $routeProvider.otherwise({redirectTo: "/"});
+            templateUrl: "regex-details.html",
+            controller: "ListingController"
+
+        });
 
 });
 
-// Primary controller for the application
-app.controller('regexListingController', function ($scope, $location, CollectRegex) {
 
-    // All global states to be changed dynamically
+app.controller('ListingController', function ($scope, $routeParams, CollectRegex, Search) {
+
+//   $scope.regexModel = {
+//       keyword: Search.keyword,
+//       data: Search.data
+//   }
+
+    if ($routeParams.id) {
+        $scope.currentRegex = $routeParams.id;
+        Search.single = CollectRegex.getRegexByID($routeParams.id);
+        $scope.globalClasses.searchStatus.push("search-completed");
+        $scope.globalStates.searchStatus = true;
+    }
+    $scope.regexModel = Search;
+
+    // TODO: Remap returned keys to reduce the number of future changes that need to be made to the view
+
+
+});
+// Primary controller for the application
+app.controller('SearchController', function ($scope, $location, CollectRegex, Search, $routeParams) {
+
     $scope.globalClasses = {
         searchStatus: []
     };
@@ -19,19 +45,15 @@ app.controller('regexListingController', function ($scope, $location, CollectReg
         searchStatus: false
     };
 
-    $scope.searchData = {};
-    $scope.activeInput = "search"; // Can be either search or filter
-
+    $scope.searchData = Search;
     if ($scope.globalStates.searchStatus) {
         $scope.globalClasses.searchStatus.push("search-completed");
 
     }
 
-    $scope.setActiveInput = function (inputname){
-        $scope.activeInput = inputname;
-        $scope.searchData.filterText = "";
-        console.log(inputname);
-    }
+    $scope.activeInput = "search"; // Can be either search or filter
+
+
     $scope.getRegexListing = function (keyword) {
 
         if (!$scope.globalClasses.searchStatus['search-completed']) {
@@ -39,11 +61,12 @@ app.controller('regexListingController', function ($scope, $location, CollectReg
             $scope.globalStates.searchStatus = true;
         }
 
-        $scope.searchData.regexResults = CollectRegex.getRegex(keyword);
+        CollectRegex.setKeyword(keyword);
+        Search.data = CollectRegex.getAllRegex();
+
+        $location.path("/");
+
     };
-
-
-
 
 
 });
@@ -126,19 +149,56 @@ app.directive("expandfield", function () {
 
     };
 });
-app.service('CollectRegex', function ($http) {
-    this.getRegex = function (keyword) {
 
-        var regexArray = $http.get('soaprequest.php?keyword=' + keyword, {
-            cache: true
-        }).then(function (result) {
-                if (!result.data.NewDataSet) {
-                    return false;
-                }
-                console.log(result.data.NewDataSet.Expressions);
-                return result.data.NewDataSet.Expressions;
-            });
+app.factory('Search', function () {
+    return {
+        keyword: '',
+        data: ''
+    }
+});
+app.factory('CollectRegex', function ($http) {
+    var regexData = {
+        setKeyword: function (keyword) {
+            regexData.keyword = keyword;
+        },
+        getAllRegex: function () {
+            if (regexData.keyword) {
+                var keyword = regexData.keyword;
+                var regexArray = $http.get('soaprequest.php?keyword=' + keyword, {
+                    cache: true
+                }).then(function (result) {
+                        if (!result.data) {
+                            return false;
+                        }
+                        console.log(result.data);
+                        return result.data;
+                    });
+                return regexArray;
+            }
+            else {
+                console.log("Keyword not set");
+            }
 
-        return regexArray;
+        },
+        getRegexByID: function (id) {
+
+            var regex = $http.get('soaprequest.php?id=' + id, {
+                cache: true
+
+            }).then(function (result) {
+
+                    if (!result.data) {
+                        console.log("No regex by that id was found");
+                        return false;
+
+                    }
+
+                    return result.data;
+
+                })
+            return regex;
+
+        }
     };
+    return regexData;
 });
