@@ -1,5 +1,5 @@
 <div class="regex-container"
-     ng-repeat="regex in regexModel.data | filter:regexModel.filter | orderBy: 'Title'"
+     ng-repeat="regex in regexModel.data | filter: regexModel.filterText | orderBy: 'Title'"
      ng-class="localClasses.expandfield" expandfield="expanded" ng-cloak>
     <div class="regex-data" ng-class="regexState">
         <div class="regex-data-item-container">

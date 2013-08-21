@@ -52,7 +52,11 @@ app.controller('SearchController', function ($scope, $location, CollectRegex, Se
     }
 
     $scope.activeInput = "search"; // Can be either search or filter
-
+    $scope.setActiveInput = function (inputname) {
+        $scope.activeInput = inputname;
+        $scope.searchData.filterText = "";
+        console.log(inputname);
+    }
 
     $scope.getRegexListing = function (keyword) {
 

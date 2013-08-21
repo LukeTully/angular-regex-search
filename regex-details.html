@@ -1,37 +1,27 @@
-<!--<div style="position: absolute;z-index: 5;top:0;font-size:5em;">-->
-<!--{{ model.currentRegex.id }}-->
-<!--</div>-->
-
-<!--ng-repeat="regex in regexModel.single | filter: {ExpressionId:currentRegex} | limitTo: 1"-->
 <div class="regex-container"
      ng-cloak>
     <div class="regex-data" ng-class="regexState">
         <div class="regex-data-item-container">
 
-            <p class="data-label" ng-cloak>Title</p>
+            <p class="data-label" ng-cloak>Description</p>
 
             <p class="data-item" ng-cloak>{{ regexModel.single.description }}</p>
 
-            <!--</div>-->
-            <!--<div class="regex-data-item-container last">-->
-            <!--<p class="data-label" ng-cloak>Pattern</p>-->
-
-            <!--<p class="data-item" ng-cloak>{{regex.Pattern }}</p>-->
-            <!--</div>-->
-
-            <!--<div class="regex-data-item-container"><p class="data-label">Doesn't Match</p>-->
-
-            <!--<p class="data-item" ng-cloak>{{ regex.NegativeMatch }}</p>-->
-            <!--</div>-->
-            <!--<div class="regex-data-item-container"><p class="data-label">Matches</p>-->
-
-            <!--<p class="data-item" ng-cloak>{{ regex.PositiveMatch }}</p>-->
-            <!--</div>-->
-            <!--<div class="regex-data-item-container last">-->
-            <!--<p class="data-label" ng-cloak>Description</p>-->
-
-            <!--<p class="data-item" ng-cloak>{{regex.Description }}</p>-->
-            <!--</div>-->
-
         </div>
+        <div class="regex-data-item-container last">
+            <p class="data-label" ng-cloak>Pattern</p>
+
+            <p class="data-item" ng-cloak>{{regexModel.single.regular_expression }}</p>
+        </div>
+
+        <div class="regex-data-item-container"><p class="data-label">Doesn't Match</p>
+
+            <p class="data-item" ng-cloak>{{ regexModel.single.not_matches }}</p>
+        </div>
+        <div class="regex-data-item-container"><p class="data-label">Matches</p>
+
+            <p class="data-item" ng-cloak>{{ regexModel.single.matches }}</p>
+        </div>
+
     </div>
+</div>
