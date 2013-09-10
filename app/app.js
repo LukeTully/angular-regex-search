@@ -2,6 +2,13 @@
  * Created by Luke on 2013-08-11.
  */
 var app = angular.module('RegexSearch', []);
+
+angular.element(document).ready(function () {
+
+    angular.bootstrap(document, ['RegexSearch']);
+
+});
+
 app.config(function ($routeProvider) {
     $routeProvider.when("/", {
         templateUrl: "regex.html",

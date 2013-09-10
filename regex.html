@@ -1,3 +1,6 @@
+<div class="loading" ng-show="globalStates.searchStatus && !regexModel.data">
+</div>
+
 <div class="regex-container"
      ng-repeat="regex in regexModel.data | filter: regexModel.filterText | orderBy: 'Title'"
      ng-class="localClasses.expandfield" expandfield="expanded" ng-cloak>

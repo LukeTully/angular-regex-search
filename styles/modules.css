@@ -3,92 +3,99 @@ http://localhost/regexpservice/styles/modules.css */
 /* @group Modules -Aesthetics -Default */
 /* Applies to layout elements */
 .body {
-	background-color: #e5e5e5;
+    background-color: #e5e5e5;
 }
 
 .main-form-container {
-	background-color: #fff;
+    background-color: #fff;
+}
+
+.loading {
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-color: red;
 }
 
 .regex-container {
-	background-color: #fff;
-	border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid #ccc;
 }
 
 /* Applies to heading elements */
 /* Applies to form elements */
 .input-text.label {
-	font-size: 1.6em;
-	line-height: 2.4em;
+    font-size: 1.6em;
+    line-height: 2.4em;
 }
 
 .input-text.main {
-	font-size: 2.1em;
-	line-height: 1.143em;
+    font-size: 2.1em;
+    line-height: 1.143em;
 }
 
 .search-completed .input-text.main {
-	line-height: 1.524em;
+    line-height: 1.524em;
 }
 
 .input-submit {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .input-submit.main {
-	color: #fff;
+    color: #fff;
 }
 
 .search-completed .input-submit.main {
-	line-height: 2.250em;
+    line-height: 2.250em;
 }
 
 .form-option-container {
-	font-size: 1.4em;
-	line-height: 2.286em;
+    font-size: 1.4em;
+    line-height: 2.286em;
 }
 
 /* Applies to paragraphs */
 .data-label {
-	font-size: 1.8em;
+    font-size: 1.8em;
 }
 
 .data-label:after {
-	content: ': ';
+    content: ': ';
 }
 
 /* Applies to links and buttons */
 .button {
-	background-color: #000;
-	display: block;
-	color: #fff;
-	text-decoration: none;
-	font-size: 1.6em;
-	line-height: 1.5em;
-	cursor: pointer;
-	text-align: center;
+    background-color: #000;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.6em;
+    line-height: 1.5em;
+    cursor: pointer;
+    text-align: center;
 }
 
 .button.active {
-	background: #000;
+    background: #000;
 }
 
 .more-info {
-	background-color: #a11d20;
+    background-color: #a11d20;
 }
 
 /* Applies to an individual result */
 .data-item {
-	word-break: break-word;
+    word-break: break-word;
 }
 
 /* @end */
 /* @group Moduiles -Aesthetics - 1000px */
 @media screen and (min-width: 1000px) {
-	.input-text.label {
-	font-size: 2.1em;
-	line-height: 1.143em;
-}
+    .input-text.label {
+        font-size: 2.1em;
+        line-height: 1.143em;
+    }
 
 }
 
