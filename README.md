@@ -5,5 +5,3 @@ This is an application that I chose to build in the process of learning AngularJ
 
 Included in the package is a PHP based SOAP proxy that accepts a query from Javascript, pulls the WSDL from http://regexlib.com and uses the appropriate service, then converts the response to JSON and returns that to the front end.
 
-Live Demo
-http://luketully.ca/projects/regex
